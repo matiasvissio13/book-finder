@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-const API_KEY = 'AIzaSyCPjxRQ8u1Okn4LLcV28MQXC885zgx84lM'
+const API_KEY = import.meta.env.VITE_API_KEY
 
 const initialState = {
     loading: false,
