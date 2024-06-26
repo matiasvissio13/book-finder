@@ -13,7 +13,7 @@ const initialState = {
 export const fetchBooks = createAsyncThunk(
     'book/fetchBooks',
     async (searchQuery) => {
-        if (searchQuery === '') return null
+        if (searchQuery === '' || searchQuery === undefined) return null
 
         try {
             const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=15&key=${API_KEY}`)
@@ -65,7 +65,6 @@ const bookSlice = createSlice({
             } else {
                 state.favPage = action.payload
             }
-            console.log(action.payload, state.favPage)
             window.localStorage.setItem('fav', state.favPage.toString())
         },
     },
@@ -78,10 +77,10 @@ const bookSlice = createSlice({
             state.books = action.payload
             state.error = ''
         })
-        builder.addCase(fetchBooks.rejected, (state, action) => {
+        builder.addCase(fetchBooks.rejected, (state) => {
             state.loading = false
             state.books = []
-            state.error = action.error.message
+            state.error = ''
         })
     }
 })

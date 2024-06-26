@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-import { removeFav } from '../../store/books/bookSlice'
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { removeFav } from '../store/books/bookSlice'
+import { Spinner } from "flowbite-react"
+import { useDispatch, useSelector } from 'react-redux'
 
 const Fav = () => {
   const book = useSelector((state) => state.books)
@@ -13,7 +14,9 @@ const Fav = () => {
 
   return (
     <>
-      {book.loading && <p className='mx-auto pt-52 text-center'>Loading...</p>}
+      {book.loading &&  <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto items-center text-center text-xl text-gray-300'>
+        <Spinner color='info' aria-label="Default status example" size='lg' /></div>}
+      {!book.loading && book.favbooks.length === 0 && <p className='mx-auto pt-60 text-center text-xl text-gray-400'>Aun no haz añadido peliculas a favorito.</p>}
       {!book.loading && book.error ? <p>Error: {book.error}</p> : null}
       {!book.loading && book.favbooks.length ? (
         <ul className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 w-full sm:w-11/12 md:w-full px-4 gap-5 rounded-md max-w-[1200px] mb-10">
@@ -34,8 +37,10 @@ const Fav = () => {
               ))
           }
         </ul>
-      ) : null
+      )
+      : null
       }
+
     </>
   )
 }

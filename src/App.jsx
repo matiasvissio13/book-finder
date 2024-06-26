@@ -1,12 +1,11 @@
 import { useEffect } from "react"
 import { fetchBooks } from './store/books/bookSlice'
 import { useDispatch } from "react-redux"
-import Hero from "./components/Hero/Hero"
-import Fav from './components/Fav/Fav'
+import Hero from "./components/Hero"
+import Fav from './components/Fav'
+import BookDetails from './components/BookDetails.jsx'
+import ListBooks from "./components/ListBooks.jsx"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import BookDetails from './components/BookDetails/BookDetails.jsx'
-// import NavBar from "./components/NavBar/NavBar.jsx"
-import ListBooks from "./components/ListBooks/ListBooks.jsx"
 
 function App() {
 
@@ -45,7 +44,7 @@ function App() {
 
 
   return (
-    <div className='flex h-full flex-col items-center'>
+    <div className='flex h-screen flex-col items-center'>
       <RouterProvider router={router} />
     </div>
   )

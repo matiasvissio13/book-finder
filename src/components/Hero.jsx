@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router-dom'
-import NavBar from '../NavBar/NavBar'
+import NavBar from './NavBar'
+import Filter from './Filter'
 
 const Hero = () => {
     return (
         <>
-            <NavBar />      
+            <NavBar />
+            <Filter/>
             <Outlet/>
         </>
     )

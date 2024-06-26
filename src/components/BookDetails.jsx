@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { IoCloseOutline } from "react-icons/io5";
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { favPageToggle } from '../../store/books/bookSlice';
+import { favPageToggle } from '../store/books/bookSlice';
 
 const BookDetails = () => {
     const { id } = useParams()
@@ -24,7 +24,7 @@ const BookDetails = () => {
 
     return (
         <section>
-            <div className='flex flex-row relative w-[1200px] bg-[#2D2F31] rounded-md px-7 py-7'>
+            <div className='flex flex-row relative w-[1200px] bg-[#2D2F31] rounded-md px-5 py-5'>
                 <div className='flex justify-between'>
                     <div className='flex items-center  h-[250px] w-max rounded-md'>
                         <img src={image} alt={title} className="rounded-md object-cover h-[250px] w-[160px]" />
