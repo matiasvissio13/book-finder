@@ -4,7 +4,7 @@ import Search from './Search'
 import { useDispatch, useSelector } from 'react-redux'
 import { favPageToggle } from '../store/books/bookSlice'
 
-const NavBar = () => {
+const NavBar = ({query, handleChange, handleSubmit}) => {
     const dispatch = useDispatch()
     const fav = useSelector((state) => state.books)
 
@@ -14,7 +14,7 @@ const NavBar = () => {
             <Link to={fav.favPage ? '/' : '/favorite'} onClick={() => dispatch(favPageToggle())} className={`relative bg-[#2D2F31] hover:bg-[#383B3C] rounded-full p-[12px] h-[48px] w-[48px] transition-all ${fav.favPage ? 'text-[#d65a5a]' : 'text-[#e9e9e9]'}`}>
                 <MdFavorite size={24} />
             </Link>
-            <Search />
+            <Search query={query} handleChange={handleChange} handleSubmit={handleSubmit}/>
         </nav>
     )
 }

@@ -7,16 +7,23 @@ const initialState = {
     books: [],
     favbooks: window.localStorage.getItem('books') ? JSON.parse(window.localStorage.getItem('books')) : [],
     favPage: window.localStorage.getItem('fav') !== null ? JSON.parse(window.localStorage.getItem('fav')) : false,
+    query: '',
     error: false
 }
 
 export const fetchBooks = createAsyncThunk(
     'book/fetchBooks',
-    async (searchQuery) => {
+    async (arge) => {
+        const { searchQuery, filterEl } = arge
+
         if (searchQuery === '' || searchQuery === undefined) return null
 
+        // GET https://www.googleapis.com/books/v1/volumes?q=flowers&filter=free-ebooks&key=yourAPIKey
+
+        const filter = filterEl !== '' ? '&filter=' + filterEl : ''
+
         try {
-            const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=15&key=${API_KEY}`)
+            const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}${filter}&maxResults=14&key=${API_KEY}`)
             const json = await resp.json()
             const books = json.items
 

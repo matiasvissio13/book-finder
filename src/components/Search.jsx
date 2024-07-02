@@ -1,9 +1,9 @@
 import { IoIosSearch } from "react-icons/io";
-import useSearchBook from "../hooks/useSearchBook";
+// import useSearchBook from "../hooks/useSearchBook";
 
-const Search = () => {
-  const { query, handleChange, handleSubmit } = useSearchBook()
- 
+const Search = ({ query, handleChange, handleSubmit }) => {
+  // const { query, handleChange, handleSubmit } = useSearchBook()
+
   return (
     <form onSubmit={handleSubmit} className='flex justify-center w-full'>
       <input

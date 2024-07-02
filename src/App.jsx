@@ -5,18 +5,17 @@ import Hero from "./components/Hero"
 import Fav from './components/Fav'
 import BookDetails from './components/BookDetails.jsx'
 import ListBooks from "./components/ListBooks.jsx"
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createHashRouter, RouterProvider } from 'react-router-dom'
 
 function App() {
-
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchBooks('Harry Potter'))
+    dispatch(fetchBooks({searchQuery: 'Harry Potter', filterEl: ''}))
   }, [])
 
 
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       element: <Hero />,
       errorElement: <h1>404 Not Found</h1>,

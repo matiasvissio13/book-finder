@@ -4,12 +4,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FaHeart, FaRegHeart } from "react-icons/fa"
 import { Spinner } from "flowbite-react"
 import { Link } from 'react-router-dom'
+import { useOutletContext } from "react-router-dom";
+import Filter from './Filter'
+
 
 const ListBooks = () => {
   const book = useSelector((state) => state.books)
   const dispatch = useDispatch();
 
+  const [query] = useOutletContext();
+
   // TODO: Hacer paginacion
+  console.log(`List BOooks:  ${query}`)
 
   useEffect(() => {
     dispatch(favPageToggle(false))
@@ -17,6 +23,7 @@ const ListBooks = () => {
 
   return (
     <>
+      <Filter query={query} />
       {book.loading && <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto items-center text-center text-xl text-gray-300'>
         <Spinner color='info' aria-label="Default status example" size='lg' /></div>}
       {!book.loading && book.books == undefined && <p className='mx-auto pt-60 text-center text-xl text-gray-300'>No se han encontrado resultados.</p>}

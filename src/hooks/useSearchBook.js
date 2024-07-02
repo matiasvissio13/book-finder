@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const useSearchBook = () => {
     const [query, setQuery] = useState('')
-
+    
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -16,8 +16,8 @@ const useSearchBook = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (query === '') return
-        dispatch(fetchBooks(query))
-        setQuery('')
+        dispatch(fetchBooks({ searchQuery: query, filterEl: '' }))
+        // setQuery('')
         favPageToggle(false)
         navigate('/bookList')
     }
@@ -27,7 +27,7 @@ const useSearchBook = () => {
         handleChange,
         handleSubmit
     }
-};
+}
 
 export default useSearchBook
 

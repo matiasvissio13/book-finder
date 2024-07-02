@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom'
 import NavBar from './NavBar'
-import Filter from './Filter'
+import useSearchBook from '../hooks/useSearchBook'
 
 const Hero = () => {
+    const { query, handleChange, handleSubmit } = useSearchBook()
+
     return (
         <>
-            <NavBar />
-            <Filter/>
-            <Outlet/>
+            <NavBar query={query} handleChange={handleChange} handleSubmit={handleSubmit}/>
+            <Outlet context={[query]}/>
         </>
     )
 }
